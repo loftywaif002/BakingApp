@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_recipe_icon" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../../../assetsnstuff/generated.svg" />
+                            <entry key="outputName" value="ic_d_served" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../../assetsnstuff/generated2.svg" />
                           </map>
                         </option>
                       </PersistentState>

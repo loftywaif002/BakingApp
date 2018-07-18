@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/itemCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/margin_22dp"
+        android:paddingTop="@dimen/margin_22dp">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/baking_image"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:contentDescription="@string/baking_img"
+            app:layout_constraintBottom_toBottomOf="@+id/servings"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recipe_name"
+            app:srcCompat="@drawable/ic_d_served" />
+
+        <TextView
+            android:id="@+id/recipe_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_16dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:textSize="@dimen/text_18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/baking_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Apple Pie" />
+
+        <TextView
+            android:id="@+id/servings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_14sp"
+            app:layout_constraintEnd_toEndOf="@+id/recipe_name"
+            app:layout_constraintStart_toStartOf="@+id/recipe_name"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_name"
+            tools:text="Servings: 1" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

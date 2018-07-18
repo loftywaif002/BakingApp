@@ -2,17 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wca.bakingapp.fragments.RecipeFragment">
+    tools:context="com.cmpny.wca.bakingapp.Fragments.RecipeFragment">
 
     <include layout="@layout/empty_layout" />
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/pull_to_refresh"
+        android:id="@+id/pull_n_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recipes_recycler_view"
+            android:id="@+id/recipe_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/recipe_list_item" />

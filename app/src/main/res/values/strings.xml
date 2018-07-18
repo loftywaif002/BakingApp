@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">BakingApp</string>
     <string name="no_data">Data is not available for Recipes.</string>
+    <string name="baking_img">Baking image</string>
+    <string name="no_internet">Internet connection appears to be offline</string>
 </resources>
