@@ -19,7 +19,8 @@ import android.view.ViewGroup;
 
 import com.cmpny.wca.bakingapp.Models.Recipe;
 import com.cmpny.wca.bakingapp.R;
-import com.orhanobut.logger.Logger;
+import com.cmpny.wca.bakingapp.RecipeApi.RecipesApi;
+import com.cmpny.wca.bakingapp.utilities.NetworkUtils;
 
 import java.util.List;
 
@@ -103,8 +104,9 @@ public class RecipeFragment extends Fragment{
             mRecipesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         }
 
-
     }
+
+
 
 
     @Override

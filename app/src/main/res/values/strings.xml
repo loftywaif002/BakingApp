@@ -3,4 +3,6 @@
     <string name="no_data">Data is not available for Recipes.</string>
     <string name="baking_img">Baking image</string>
     <string name="no_internet">Internet connection appears to be offline</string>
+    <string name="title_recipe_steps_detail">RecipeSteps Detail</string>
+    <string name="failed_to_fetch">Oops! Failed to fetch data.</string>
 </resources>
