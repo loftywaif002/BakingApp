@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cmpny.wca.bakingapp.Adapters.RecipesAdapter;
+import com.cmpny.wca.bakingapp.Common.ItemClickListener;
+import com.cmpny.wca.bakingapp.Common.RecipeClickListener;
 import com.cmpny.wca.bakingapp.Models.Recipe;
 import com.cmpny.wca.bakingapp.R;
 import com.cmpny.wca.bakingapp.RecipeApi.RecipesApi;
@@ -41,7 +43,7 @@ public class RecipeFragment extends Fragment{
 
     private static String INTENT_KEY = "recipes";
 
-    private RecipeClickListener mClickListener;
+    private com.cmpny.wca.bakingapp.Common.RecipeClickListener.OnRecipeClickListener mClickListener;
     private List<Recipe> mRecipes;
 
 
@@ -90,7 +92,31 @@ public class RecipeFragment extends Fragment{
 
         //Add code for Espresso Test
 
+
+
+        if (savedInstanceState != null && savedInstanceState.containsKey(INTENT_KEY)) {
+            mRecipes = savedInstanceState.getParcelableArrayList(INTENT_KEY);
+
+            mRecipesRecyclerView.setAdapter(new RecipesAdapter(getActivity().getApplicationContext(), mRecipes, new ItemClickListener.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    mClickListener.onRecipeSelected(mRecipes.get(position));
+                }
+            }));
+            checkLoadedDataAndChangeLayout();
+        }
         return viewRoot;
+    }
+
+    private void checkLoadedDataAndChangeLayout() {
+        boolean loaded = mRecipes != null && mRecipes.size() > 0;
+        mPullNRefresh.setRefreshing(false);
+
+        mRecipesRecyclerView.setVisibility(loaded ? View.VISIBLE : View.GONE);
+        mNoDataLayout.setVisibility(loaded ? View.GONE : View.VISIBLE);
+
+        //Ui testing Code, idle resource
+
     }
 
     private void setRecyclerViewLayout() {
@@ -107,16 +133,52 @@ public class RecipeFragment extends Fragment{
     }
 
 
+    private void fetchRecipeData() {
+        // Set SwipeRefreshLayout that refreshing in case that loadRecipes get called by the networkChangeReceiver
+        if (NetworkUtils.isNetworkAvailable(getActivity().getApplicationContext())) {
+            mPullNRefresh.setRefreshing(true);
+
+            RecipesApi.getInstance().getRecipes(new RecipesApi.RecipesApiCallback<List<Recipe>>() {
+                @Override
+                public void onResponse(final List<Recipe> result) {
+                    if (result != null) {
+                        mRecipes = result;
+                        mRecipesRecyclerView.setAdapter(new RecipesAdapter(getActivity().getApplicationContext(), mRecipes, new ItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+                                mClickListener.onRecipeSelected(mRecipes.get(position));
+                            }
+                        }));
+                        //Widget Code goes here
+
+                    } else {
+                        NetworkUtils.createSnackBar(getActivity(), getView(), getString(R.string.failed_to_fetch), true);
+                    }
+                    checkLoadedDataAndChangeLayout();
+
+                }
+
+                @Override
+                public void onCancel() {
+                    //Check for loaded data
+                    checkLoadedDataAndChangeLayout();
+                }
+
+            });
+        } else {
+            NetworkUtils.createSnackBar(getActivity(), getView(), getString(R.string.no_internet), true);
+        }
+    }
 
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof RecipeClickListener) {
-            mClickListener = (RecipeClickListener) context;
+            mClickListener = (com.cmpny.wca.bakingapp.Common.RecipeClickListener.OnRecipeClickListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement RecipeClickListener");
+                    + " Fragment should implement RecipeClickListener");
         }
     }
 
@@ -139,6 +201,7 @@ public class RecipeFragment extends Fragment{
         public void onReceive(Context context, Intent intent) {
             if (mRecipes == null) {
                 //Add Method TO Implement
+                fetchRecipeData();
             }
         }
     };
@@ -159,3 +222,4 @@ public class RecipeFragment extends Fragment{
 
 
 }
+

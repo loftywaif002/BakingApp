@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_arrow_right" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../../../assetsnstuff/arrow-right-drop-circle-outline.svg" />
+                            <entry key="outputName" value="ic_bowl" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../../assetsnstuff/bowl.svg" />
                           </map>
                         </option>
                       </PersistentState>
