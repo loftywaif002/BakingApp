@@ -6,4 +6,8 @@
     <string name="title_recipe_steps_detail">RecipeSteps Detail</string>
     <string name="failed_to_fetch">Oops! Failed to fetch data.</string>
     <string name="serving">servings: %d</string>
+    <string name="add_to_widget">Add to widget</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="recipe_widget_key">widget_recipe_key</string>
+    <string name="step">Step %d</string>
 </resources>

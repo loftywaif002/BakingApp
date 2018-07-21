@@ -28,11 +28,6 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
         this.mOnItemClickListener = onItemClickListener;
     }
 
-    @Override
-    public int getItemCount() {
-        return mRecipes.size();
-    }
-
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,6 +35,12 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
                 .inflate(R.layout.recipe_list_item, parent, false);
 
         return new RecipeViewHolder(view);
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return mRecipes.size();
     }
 
     @SuppressLint("RecyclerView")
@@ -64,6 +65,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
             }
         });
     }
+
 
 
 

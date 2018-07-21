@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/steps_text"
         app:srcCompat="@drawable/ic_arrow_right"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,VectorDrawableCompat" />
 
     <FrameLayout
         android:layout_width="0dp"

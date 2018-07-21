@@ -6,4 +6,6 @@
     <color name="colorError">#c90000</color>
     <color name="colorInfo">#22adc1</color>
     <color name="colorLightGrey">#cfcfcf</color>
+    <color name="ingredientColor">#ffffff</color>
+    <color name="ingredientBackground">#FF5733</color>
 </resources>
